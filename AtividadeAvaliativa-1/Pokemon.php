@@ -18,13 +18,19 @@ class Pokemon
     function batalha()
     {
         if (rand(1, 100) <= 50) {
-            return "O pokemon " . $this->nome . " venceu a batalha!";
+            
             $this->experiencia += rand(10, 50);
+            $this->aumentarNivel();
+            global $dinhero;
             $dinhero += rand(100, 500);
-            aumentarNivel();
+            return "O pokemon " . $this->nome . " venceu a batalha!";
+            
+
         } else {
-            return "O pokemon " . $this->nome . " perdeu a batalha!";
+            global $dinhero;
             $dinhero -= rand(100, 500);
+            return "O pokemon " . $this->nome . " perdeu a batalha!";
+           
         }
     } 
     function aumentarstatus()
@@ -47,11 +53,12 @@ class Pokemon
    
 }
 
-print "Bem-vindo ao mundo dos pokemons! Você tem R$" . $dinhero . " \npara gastar em pokebolas, poções e outros itens para ajudar seus pokemons a vencerem as batalhas!";
+print " Bem-vindo ao mundo dos pokemons! \nVocê tem R$" . $dinhero . " para gastar em pokebolas, poções e outros itens para ajudar seus pokemons a vencerem as batalhas!\nE se você falir você perde o jogo. \n\n";
 
 print "Digite o seu nome: ";
+$nome = readline();
 
-print "Escolha o seu pokemon inicial: \n1 - Charmander\n2 - Squirtle\n Desculpe, mas estamos sem o bulbasaur no momento pois o ultimo treinado era um nerdola que queria fazer nuzlock. \n\n";
+print "Escolha o seu pokemon inicial: \n1 - Charmander\n2 - Squirtle\nDesculpe, mas estamos sem o bulbasaur no momento pois o ultimo treinado era um nerdola que queria fazer nuzlock. \n\n";
 
 $escolha = readline("Digite o número do pokemon escolhido: ");
 if ($escolha == 1) {
@@ -84,6 +91,7 @@ print "Você escolheu o pokemon " . $pokemon->nome . " do tipo " . $pokemon->tip
 
 while (true) {
     system('cls');
+    print "Dinheiro: R$" . $dinhero . "               Usuário: " . $nome . "\n\n";
     print "O que você deseja fazer? \n1 - Batalhar\n2 - Ver status do pokemon\n3 - Sair do jogo\n";
     $opcao = readline("Digite o número da opção desejada: ");
     if ($opcao == 1) {
