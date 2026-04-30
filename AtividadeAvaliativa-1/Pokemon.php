@@ -78,6 +78,33 @@ if ($escolha == 1) {
     print "Opção inválida. Por favor, escolha um pokemon válido.";
 }
 
-system('clear');
+system('cls');
+
+print "Você escolheu o pokemon " . $pokemon->nome . " do tipo " . $pokemon->tipo . ". \n\n";
+
+while (true) {
+    system('cls');
+    print "O que você deseja fazer? \n1 - Batalhar\n2 - Ver status do pokemon\n3 - Sair do jogo\n";
+    $opcao = readline("Digite o número da opção desejada: ");
+    if ($opcao == 1) {
+        print $pokemon->batalha() . "\n\n";
+    } elseif ($opcao == 2) {
+        print "Nome: " . $pokemon->nome . "\n";
+        print "Tipo: " . $pokemon->tipo . "\n";
+        print "Experiência: " . $pokemon->experiencia . "\n";
+        print "Ataque: " . $pokemon->ataque . "\n";
+        print "Defesa: " . $pokemon->defesa . "\n";
+        print "Pontos de Vida: " . $pokemon->pontosVida . "\n";
+        print "Velocidade: " . $pokemon->velocidade . "\n";
+        print "Nível: " . $pokemon->nivel . "\n\n";
+        readline("Pressione Enter para continuar...");
+    } elseif ($opcao == 3) {
+        print "Obrigado por jogar! Até a próxima!";
+        sleep(4);
+        break;
+    } else {
+        print "Opção inválida. Por favor, escolha uma opção válida.\n\n";
+    }
+}
 
 
