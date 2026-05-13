@@ -1,12 +1,5 @@
 <?php
 
-class Carro{
-
-private $marca;
-private $modelo;
-private $anoFabricacao;
-private $velocidadeMaxima;
-
 function ComparaVelocidade($carro1, $carro2, $carro3) {
 
     if ($carro1->getVelocidadeMaxima() > $carro2->getVelocidadeMaxima()) {
@@ -37,6 +30,14 @@ function ComparaVelocidade($carro1, $carro2, $carro3) {
 }
  return array($carroMaisRapido, $carroMaisLento);
 }
+
+class Carro{
+
+private $marca;
+private $modelo;
+private $anoFabricacao;
+private $velocidadeMaxima;
+
 
 
 public function getMarca()
@@ -113,7 +114,7 @@ $carro3->setModelo(readline("Digite o modelo do carro: "));
 $carro3->setAnoFabricacao(readline("Digite o ano de fabricação do carro: "));
 $carro3->setVelocidadeMaxima(readline("Digite a velocidade máxima do carro: "));
 
-$comparacao = $carro1->ComparaVelocidade($carro1, $carro2, $carro3);
+$comparacao = ComparaVelocidade($carro1, $carro2, $carro3);
 $carroMaisRapido = $comparacao[0];
 $carroMaisLento = $comparacao[1];
 
