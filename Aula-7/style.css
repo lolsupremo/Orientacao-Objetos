@@ -1,0 +1,48 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.page {
+    height: 1200px;
+    width: 1200px;
+    margin: 0 auto;
+}
+.menu {
+    height: 100px;
+    background-color: mediumblue;
+
+
+}
+.sidebar {
+    height: calc(100vh - 100px - 200px);
+    background-color: red;
+    width: 300px;
+
+    float: left;
+}
+.content {
+    min-height: calc(100vh - 100px - 200px);
+    background-color: yellow;
+    width: 900px;
+    float: right;
+    padding: 25px;
+    line-height: 30px;
+
+}
+.footer {
+    height: 200px;
+    width: 100%;
+    background-color: lightblue;
+    float: left;
+}
+
+.foto {
+
+    width: 250px;
+    float: left;
+    margin-right: 25px;
+    margin-top: 10px;
+}
