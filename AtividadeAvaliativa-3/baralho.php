@@ -17,7 +17,7 @@ class Carta
     public function __toString()
     {
     if ($this->numero == -2) {
-        return null;
+        return "Carta ja selecionada\n";
     }    
     return sprintf("%s, %s\n", $this->numero, $this->nome);
     }
@@ -75,8 +75,38 @@ function testarCartas($cartas)
         sleep(3);
         system("clear");
     } while ($cartaEscolhida != $cartaSorteada->getNumero());
+    if ($cartaEscolhida == 0) {
+        return 0;
+    }
     echo "Voce ganhou um total de pontos: " . $cartaSorteada->getpontuacao($quantidadeTentativas, $totalCartas) . "\n";
+    
     return $cartaSorteada->getpontuacao($quantidadeTentativas, $totalCartas);
+}
+
+function criarCarta($cartasExistentes)
+{
+    $numero = readline("Digite o número da carta: ");
+    foreach ($cartasExistentes as $carta) {
+        if ($numero == $carta->getNumero()) {
+            echo "Carta já existe. Digite outro número.\n";
+            $numero = readline("Digite o número da carta: ");
+        }
+    }
+    $nome = readline("Digite o nome da carta: ");
+    foreach ($cartasExistentes as $carta) {
+        if ($nome == $carta->getNome()) {
+            echo "Carta já existe. Digite outro nome.\n";
+            $nome = readline("Digite o nome da carta: ");
+        }
+    }
+    $dica = readline("Digite a dica da carta: ");
+    foreach ($cartasExistentes as $carta) {
+        if ($dica == $carta->getDica()) {
+            echo "dica já existe. Digite outra dica.\n";
+            $dica = readline("Digite a dica da carta: ");
+        }
+    }
+    return new Carta($numero, $nome, $dica);
 }
 
 $cartasBaralho = [];
@@ -111,7 +141,7 @@ $cartasYugioh[] = new Carta(8, "Monstro Renascido", "Trago de volta quem já hav
 $cartasYugioh[] = new Carta(9, "Buraco Armadilha", "Quem entra em ação sem cuidado pode desaparecer.");
 $cartasYugioh[] = new Carta(10, "Dragão Negro de Olhos Vermelhos", "Meu rival veste branco, mas eu sou lembrado pela fúria.");
 
-
+$cartasCriadas = [];
 
 
 $cartaEscolhida = 0;
@@ -123,7 +153,9 @@ while ($escolha != 0) {
     echo "1. jogar com cartas de baralho\n";
     echo "2. jogar com cartas de pokemon\n";
     echo "3. jogar com cartas de yugioh\n";
-    echo "4. Consultar pontos\n";
+    echo "4. jogar com as cartas suas cartas \n";
+    echo "5. criar suas cartas\n";
+    echo "6. Consultar pontos\n";
     echo "0. Sair\n";
     $escolha = readline();
     system("clear");
@@ -141,6 +173,13 @@ while ($escolha != 0) {
             break;
 
         case 4:
+            $totalPontos += testarCartas($cartasCriadas);
+            break;
+        case 5:
+            echo "Criando suas cartas...\n";
+            $cartasCriadas[] = criarCarta($cartasCriadas);
+            break;
+        case 6:
             echo "Sua pontuação total é: " . $totalPontos . "\n";
             break;
         case 0:
