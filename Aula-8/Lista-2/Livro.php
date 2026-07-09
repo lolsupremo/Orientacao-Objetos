@@ -97,5 +97,6 @@ while ($escolha != 0) {
             break;
         default:
             echo "Opção inválida.\n";
+            break;
     }
 }
