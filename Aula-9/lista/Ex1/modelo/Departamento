@@ -1,0 +1,23 @@
+<?php
+
+class Departamento {
+    private $nome;
+    private $numSala;
+
+    public function __construct($nome, $numSala) {
+        $this->nome = $nome;
+        $this->numSala = $numSala;
+    }
+
+    public function __toString()
+    {
+        return sprintf("Departamento: %s\nNúmero da Sala: %s\n", $this->nome, $this->numSala);
+    }
+    public function getNome() {
+        return $this->nome;
+    }
+
+    public function getNumSala() {
+        return $this->numSala;
+    }
+}
