@@ -7,12 +7,11 @@ class ClientePJ extends Cliente{
     private string $razaoSocial;
     private string $cnpj;
 
-    public function __construct(string $razaoSocial, string $cnpj, string $email, int $id, string $nomeSocial)
+    public function __construct(string $razaoSocial, string $cnpj, string $email, string $nomeSocial)
     {
         $this->razaoSocial = $razaoSocial;
         $this->cnpj = $cnpj;
         $this->email = $email;
-        $this->id = $id;
         $this->nomeSocial = $nomeSocial;
     }
 
@@ -28,7 +27,7 @@ class ClientePJ extends Cliente{
 
     public function getTipo(): string
     {
-        return "Pessoa Jurídica";
+        return "J";
     }
     
     public function setRazaoSocial(string $razaoSocial): void

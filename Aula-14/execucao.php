@@ -3,18 +3,21 @@
 require_once 'util/Conexao.php';
 require_once 'modelo/ClientePF.php';
 require_once 'modelo/ClientePJ.php';
-
+require_once 'dao/ClienteDAO.php';
 /*
 $conexao = Conexao::getConexao();
 
 print_r($conexao);
 */
 $opcao = null;
-$id = 0;
+$clienteDAO = new ClienteDAO();
 do {
     echo "--- Cadastro dos trouxas ---\n";
     echo "1 - Pessoa Física\n";
     echo "2 - Pessoa Jurídica\n";
+    echo "3 - Listar clientes\n";
+    echo "4 - Buscar cliente\n";
+    echo "5 - Excluir\n";
     echo "0 - Sair\n";
     echo "Escolha uma opção: ";
     $opcao = readline();
@@ -27,8 +30,9 @@ do {
             $cpf = readline("Digite o CPF: ");
             $email = readline("Digite o email: ");
             
-            $cliente = new ClientePF($nomeCompleto, $cpf, $email, $id, $nomeSocial);
-            $id++;  
+            $cliente = new ClientePF($nomeCompleto, $cpf, $email, $nomeSocial);
+            
+            $clienteDAO->inserir($cliente);
             
             break;
 
@@ -42,9 +46,19 @@ do {
             echo "Digite o email: ";
             $email = readline();
             
-            $cliente = new ClientePJ($razaoSocial, $cnpj, $email, $id, $nomeSocial);
+            $cliente = new ClientePJ($razaoSocial, $cnpj, $email, $nomeSocial);
             
-            $id++;
+            $clienteDAO->inserir($cliente);
+
+            break;
+
+        case 3:
+            
+            $clientes = $clienteDAO->listar();
+
+            foreach ($clientes as $c) {
+                echo $c . "\n";
+            }
             break;
         case 0:
             echo "Saindo...\n";

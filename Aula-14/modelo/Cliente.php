@@ -6,6 +6,11 @@ abstract class Cliente{
     protected string $nomeSocial;
     protected string $email;
 
+    public function __tostring() {
+        $dados = sprintf("%d|%s|%s|%s|%s|%s", $this->id, $this->getTipo(), $this->nomeSocial, $this->email, $this->getNome(), $this->getNroDoc());
+        return $dados;
+    }
+
     public abstract function getNome();
     public abstract function getNroDoc();
     public abstract function getTipo();

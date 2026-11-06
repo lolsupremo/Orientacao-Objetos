@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once __DIR__.'/Cliente.php';
 
@@ -7,17 +7,14 @@ class ClientePF extends Cliente{
     private string $nomeCompleto;
     private string $cpf;
 
-    public function __construct(string $nomeCompleto, string $cpf, string $email, int $id, string $nomeSocial)
+    public function __construct(string $nomeCompleto, string $cpf, string $email,  string $nomeSocial)
     {
         $this->nomeCompleto = $nomeCompleto;
         $this->cpf = $cpf;
         $this->email = $email;
-        $this->id = $id;
         $this->nomeSocial = $nomeSocial;
     }
-    
-        
-    
+
 
     public function getNome(): string
     {
@@ -31,7 +28,7 @@ class ClientePF extends Cliente{
 
     public function getTipo(): string
     {
-        return "Pessoa Física";
+        return "F";
     }
 
     public function setNomeCompleto(string $nomeCompleto): void
